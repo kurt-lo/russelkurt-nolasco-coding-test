@@ -103,6 +103,8 @@ class ProductsController extends Controller
             'updated_at' => now(),
         ]);
 
+        Cache::forget('product_' . $id); // remove product from cache after updating it
+
         // return the response with succes message and status code
         return response()->json([
             'data' => $product,
@@ -118,6 +120,8 @@ class ProductsController extends Controller
 
         // delete product
         $product->delete();
+
+        Cache::forget('product_' . $id); // remove product from cache after deletion of it
 
         // return response with success message and status code
         return response()->json([
