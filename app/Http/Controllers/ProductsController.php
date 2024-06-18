@@ -9,7 +9,7 @@ use \Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductsController extends Controller
 {
-    // Method toreturn all products
+    // Method toreturn all products (Product list)
     public function index()
     {
         return Products::latest()->paginate(3);
@@ -18,7 +18,7 @@ class ProductsController extends Controller
         // return Products::select('name')->latest()->paginate(4);
     }
 
-    // Method to return single product
+    // Method to return single product (Product detail)
     public function show($id)
     {
         try { // find product by id
@@ -31,7 +31,7 @@ class ProductsController extends Controller
         }
     }
 
-    // Method to create new product
+    // Method to create new product (Create product)
     public function create(Request $request)
     {
         // validate the request
@@ -61,7 +61,7 @@ class ProductsController extends Controller
         ], 201);
     }
 
-    // Method to update product
+    // Method to update product (Update product)
     public function update(Request $request, $id)
     {
         // validate the request
@@ -99,7 +99,7 @@ class ProductsController extends Controller
         ], 200);
     }
 
-    // Method to delete product
+    // Method to delete product (Delete product)
     public function destroy($id)
     {
         // find product by id
