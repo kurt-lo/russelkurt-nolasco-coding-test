@@ -19,8 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('products', 'ProductsController@index');
+// Api routes for Products
 Route::get('products', [ProductsController::class, 'index']);
 Route::get('products/{id}', [ProductsController::class, 'show']);
 Route::post('products', [ProductsController::class, 'create']);
+Route::put('products/update/{id}', [ProductsController::class, 'update']);
+Route::delete('products/delete/{id}', [ProductsController::class, 'destroy']);
 

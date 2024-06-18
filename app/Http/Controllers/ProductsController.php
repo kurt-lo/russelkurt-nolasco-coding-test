@@ -12,8 +12,10 @@ class ProductsController extends Controller
     // Method toreturn all products
     public function index()
     {
-        // latest product will be shown first and paginated
         return Products::latest()->paginate(3);
+
+        // return all products but only the name of it and paginated
+        // return Products::select('name')->latest()->paginate(4);
     }
 
     // Method to return single product
@@ -57,5 +59,58 @@ class ProductsController extends Controller
             'data' => $results,
             'message' => 'Product created successfully',
         ], 201);
+    }
+
+    // Method to update product
+    public function update(Request $request, $id)
+    {
+        // validate the request
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'max:255'],
+            'description' => ['required'],
+            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+        ]);
+
+        // check if validation fails, return 400 if true
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+            ], 400);
+        }
+
+        // validated data
+        $data = $validator->validated();
+
+        // find product by id
+        $product = Products::findOrFail($id);
+
+        // update product
+        $product->update([
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'price' => $data['price'],
+            'updated_at' => now(),
+        ]);
+
+        // return the response with succes message and status code
+        return response()->json([
+            'data' => $product,
+            'message' => 'Product updated successfully',
+        ], 200);
+    }
+
+    // Method to delete product
+    public function destroy($id)
+    {
+        // find product by id
+        $product = Products::findOrFail($id);
+
+        // delete product
+        $product->delete();
+
+        // return response with success message and status code
+        return response()->json([
+            'message' => 'Product deleted successfully',
+        ], 200);
     }
 }
