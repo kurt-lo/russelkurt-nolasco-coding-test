@@ -6,6 +6,8 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ProductsController extends Controller
 {
@@ -21,9 +23,18 @@ class ProductsController extends Controller
     // Method to return single product (Product detail)
     public function show($id)
     {
-        try { // find product by id
-            $product = Products::findOrFail($id);
-            return response()->json($product);
+        try {
+            $cacheKey = 'product_' . $id; // cache key
+
+            // cache the product by id, no expiration for the cache since its rememberforever
+            $cacheProduct = Cache::rememberForever($cacheKey, function () use ($id) {
+                return Products::findOrFail($id);
+            });
+
+            return response()->json([
+                'data' => $cacheProduct,
+                'message' => 'Product retrieved successfully',
+            ]);
         } catch (ModelNotFoundException $e) { // catch if product not found
             return response()->json([
                 'error' => "Product not found." . "<br>" . $e->getMessage(),
