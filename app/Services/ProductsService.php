@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Repositories\ProductsRepository;
 use Illuminate\Support\Facades\Cache;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ProductsService
