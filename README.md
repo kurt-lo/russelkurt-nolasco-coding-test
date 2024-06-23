@@ -144,6 +144,9 @@ A:   When gathering details for implementing additional features in our e-commer
 * Step 9: Migrate the Database
     * In the terminal, run: php artisan migrate.
     * If prompted with "Would you like to create it? (yes/no)", type yes to create the database and run the migrations.
+* Step 10: Update Testing Environment
+    * Copy the application key or the APP_KEY from .env file.
+    * Paste the APP_KEY into .env.testing file.
 
 
 
