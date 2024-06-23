@@ -19,13 +19,40 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Api routes for Products
-Route::get('products', [ProductsController::class, 'index']);
-Route::get('products/name', [ProductsController::class, 'indexName']);
-Route::get('products/{id}', [ProductsController::class, 'show']);
-Route::post('products', [ProductsController::class, 'store']);
-Route::put('products/update/{id}', [ProductsController::class, 'update']);
-Route::delete('products/delete/{id}', [ProductsController::class, 'destroy']);
+// API ROUTES FOR PRODUCTS E-COMMERCE
 
-// Api routes for Products using resource
-// Route::resource('products', ProductsController::class);
+/**  Route for fetching all the products
+ **   Api Endpoint: {{your-domain}}/api/products mine is http://127.0.0.1:8000/api/products
+ **   HTTP Method: GET
+ **/
+Route::get('products', [ProductsController::class, 'index']);
+
+/**  Route for fetching all the products but returning just the name of the products
+ **   HTTP Method: GET
+ **   Api Endpoint: {{your-domain}}/api/products/name
+ **/
+Route::get('products/name', [ProductsController::class, 'indexName']);
+
+/**  Route for fetching specific product
+ *   HTTP Method: GET
+ **   Api Endpoint: {{your-domain}}/api/products/{id}
+ **/
+Route::get('products/{id}', [ProductsController::class, 'show']);
+
+/**  Route for create a product
+ **   HTTP Method: POST
+ **   Api Endpoint: {{your-domain}}/api/products
+ **/
+Route::post('products', [ProductsController::class, 'store']);
+
+/**  Route for updating a product
+ **   HTTP Method: PUT
+ **   Api Endpoint: {{your-domain}}/api/products/{id}
+ **/
+Route::put('products/update/{id}', [ProductsController::class, 'update']);
+
+/**  Route for deleting a product
+ **   Api Endpoint: {{your-domain}}/api/products/{id}
+ **   HTTP Method: DELETE
+ **/
+Route::delete('products/delete/{id}', [ProductsController::class, 'destroy']);
