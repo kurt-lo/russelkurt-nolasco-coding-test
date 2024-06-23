@@ -47,12 +47,12 @@ Route::post('products', [ProductsController::class, 'store']);
 
 /**  Route for updating a product
  **   HTTP Method: PUT
- **   Api Endpoint: {{your-domain}}/api/products/{id}
+ **   Api Endpoint: {{your-domain}}/api/products/update/{id}
  **/
 Route::put('products/update/{id}', [ProductsController::class, 'update']);
 
 /**  Route for deleting a product
- **   Api Endpoint: {{your-domain}}/api/products/{id}
+ **   Api Endpoint: {{your-domain}}/api/products/delete/{id}
  **   HTTP Method: DELETE
  **/
 Route::delete('products/delete/{id}', [ProductsController::class, 'destroy']);
