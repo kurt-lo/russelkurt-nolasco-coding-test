@@ -28,6 +28,9 @@
     <li>
       <a href="#bonus-points">Bonus points</a>
     </li>
+    <li>
+      <a href="#application-set-up">Application Setup</a>
+    </li>
   </ol>
 </details>
 
@@ -108,3 +111,47 @@ How would you go about implementing this feature in the backend?
 A:   When gathering details for implementing additional features in our e-commerce app, it's essential to start with a thorough understanding and gathering of the requirements. By documenting the specific functionalities needed for the "featured products" section, like the ability to mark products as featured, manage their status, and display them prominently on the frontend. Defining user stories or use cases will help clarify how different users, such as administrators and customers, will interact with this feature. Also, we need to gather design specifications to ensure that backend development aligns seamlessly with frontend expectations, especially regarding how featured products will be presented visually.
 
 :    Additionally, it's important to identify necessary modifications to the database schema, such as adding fields to indicate featured type, status or timestamps for when products were highlighted. Considering performance early on involves discussing scalability needs and implementing efficient strategies for database querying and caching. We must also determine integration points with existing systems or APIs, such as user authentication services or product management tools. Lastly, estimating timelines and resource requirements for development, testing, and deployment phases, while considering dependencies and constraints that could impact project delivery. This comprehensive approach will ensure a clear understanding of the project scope and facilitate effective collaboration among stakeholders and development teams throughout the implementation process.
+
+#### Application set up.
+* Step 1: Start XAMPP
+    * Open XAMPP Control Panel.
+    * Start Apache and MySQL.
+* Step 2: Clone the Repository
+    * Open your terminal.
+    * Navigate to htdocs file of xampp. Go to where you installed xampp that's where you going to clone the project under htdocs folder. Mine is C:\xampp\htdocs
+    * Run the command: git clone https://github.com/kurt-lo/russelkurt-nolasco-coding-test.git
+* Step 3: Open the Project on your preffered IDE, mine is VS Code.
+    * (optional if you're terminal is not in the project yet)
+    * cd russelkurt-nolasco-coding-test
+    * code .
+* Step 4: Install Composer Dependencies
+    * In the terminal, run: composer install
+* Step 5: Configure Environment Variables
+    * Create a .env file:
+    * Copy all of the content of .env.testing and paste it in the newly created .env file.
+    * Open .env file in VS Code and configure your database connection: DB_CONNECTION=mysql
+                                                                        DB_HOST=127.0.0.1
+                                                                        DB_PORT=3306
+                                                                        DB_DATABASE=products_db
+                                                                        DB_USERNAME=root
+                                                                        DB_PASSWORD=
+* Step 6: Generate Application Key
+    * In the terminal, run: php artisan key:generate
+* Step 7: Serve the Application
+    * In the terminal, run: php artisan serve
+    * Open the URL given in the terminal, for example, http://127.0.0.1:8000.
+    * You should see "Hello World Products".
+* Step 9: Migrate the Database
+    * In the terminal, run: php artisan migrate.
+    * If prompted with "Would you like to create it? (yes/no)", type yes to create the database and run the migrations.
+
+
+
+
+
+
+
+
+
+
+
